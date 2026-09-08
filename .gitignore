@@ -1,5 +1,6 @@
 # Local review and extraction files
 .cloth-extract/
+projects/blender-realtime-mocap/media/demo.mp4
 
 # Visual Studio
 .vs/
@@ -34,4 +35,3 @@ local.properties
 # OS files
 .DS_Store
 Thumbs.db
-
