@@ -1,0 +1,37 @@
+# Local review and extraction files
+.cloth-extract/
+
+# Visual Studio
+.vs/
+Debug/
+Release/
+x64/
+x86/
+*.suo
+*.user
+*.ipch
+*.pdb
+*.obj
+*.ilk
+*.exe
+*.dll
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+
+# OS files
+.DS_Store
+Thumbs.db
+
