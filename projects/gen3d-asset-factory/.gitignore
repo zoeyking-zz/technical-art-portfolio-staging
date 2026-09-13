@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+Gen3D_build/
+private_inputs/
+*.blend1
