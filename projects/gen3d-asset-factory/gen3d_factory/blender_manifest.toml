@@ -1,0 +1,13 @@
+schema_version = "1.0.0"
+id = "gen3d_factory"
+version = "0.2.0"
+name = "Gen3D Asset Factory"
+tagline = "Inspect 3D assets and verify static mesh GLB deliveries"
+maintainer = "Zoey King"
+type = "add-on"
+blender_version_min = "5.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+tags = ["Pipeline"]
+
+[permissions]
+files = "Read PLY inputs and save GLB deliveries and reports"
