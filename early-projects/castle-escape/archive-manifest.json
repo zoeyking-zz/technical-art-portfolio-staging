@@ -1,0 +1,425 @@
+{
+  "archive": "castle-escape-windows-archive.zip",
+  "archived_on": "2026-09-14",
+  "material_type": "Windows IL2CPP player build; not an editable Unity source project",
+  "excluded": [
+    "BackUpThisFolder_ButDontShipItWithYourGame/**",
+    "*.pdb"
+  ],
+  "runtime_tested": false,
+  "verified": "Every ZIP entry was decompressed and SHA-256 matched against its original file.",
+  "archive_bytes": 287925374,
+  "archive_sha256": "55f1e548a0c88c1e6ff5ae186522ff4ea23c097cc81807f01dabc67f6377ddae",
+  "files": [
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/app.info",
+      "bytes": 47,
+      "sha256": "7c5c3324828db8f8f6cd6d11dcaaf77d4c59680321156f5753873123e0ca3eac"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/boot.config",
+      "bytes": 120,
+      "sha256": "a5715a6a0d5edfa2668310736fbe86d36700b41b022e6d3dd5db37e6fcbb59d5"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/globalgamemanagers",
+      "bytes": 128916,
+      "sha256": "d5882a895effca05b0141b7e5278d4d6e83d95a8a9cf4a7b29bf15ead3e6d951"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/globalgamemanagers.assets",
+      "bytes": 659900,
+      "sha256": "3d2b705f1f05045767271c1e0a68b7d6cbbe6a6b8595150ff00d0d34a35a9812"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/globalgamemanagers.assets.resS",
+      "bytes": 2899456,
+      "sha256": "5be6467e4676d13e1464e1c38b7dea15eb3c2d79ad467fce700aecfabb1ae8d8"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/2.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/2.0/machine.config",
+      "bytes": 29116,
+      "sha256": "edc5bcf685d930a607bc097927260a3f9ac7f52dd809db68158298bfd934b7ce"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/2.0/settings.map",
+      "bytes": 2622,
+      "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/2.0/web.config",
+      "bytes": 11686,
+      "sha256": "3c1a76a5849074b437d297656a208a3bef6d84b982153542b9c797046c601dfc"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.0/machine.config",
+      "bytes": 33648,
+      "sha256": "6919d5af506aae0d93e91bd83418a81895a5554b9f54cf94aad20d025a4db664"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.0/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.0/web.config",
+      "bytes": 18848,
+      "sha256": "f1a6416eeedd9d040387fd85dcf7d6e074b6644c6829d08be220ff9fc32efb31"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.5/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.5/machine.config",
+      "bytes": 34106,
+      "sha256": "ef9b9387168fd1dd6c996f96c134d9c44f8eb06f9587004bf997252a520182d6"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.5/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/4.5/web.config",
+      "bytes": 18857,
+      "sha256": "15a2c7a9242bf54d3ccb3e07fa6d8f84ba8b303d8877243787a1103009941bdb"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/browscap.ini",
+      "bytes": 311984,
+      "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/config",
+      "bytes": 3276,
+      "sha256": "60099cf91bb1a5717fc1f2d23cf36a61d3bfb70d9489fbb6f4bae98c560bf3d5"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/etc/mono/mconfig/config.xml",
+      "bytes": 25817,
+      "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "bytes": 3347792,
+      "sha256": "68eb560491d237cb892738df613df510f1ef0d19ff69ecfe5981e3bd71f9c666"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "bytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/level0",
+      "bytes": 139752,
+      "sha256": "2bb47e80188a503a711003e3d053eeb858254c67fe7e269aee366418f7ca9916"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/level0.resS",
+      "bytes": 321216,
+      "sha256": "a84036e424b87a31103b3f26754018377905771c5f42e4d02f62c1ec2ceb79be"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/resources.assets",
+      "bytes": 227480,
+      "sha256": "5ac4f828044f6f837d42353237416ae5d9eef44b8468b4612eed94640a93e128"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/resources.assets.resS",
+      "bytes": 7172,
+      "sha256": "4436b3f0d55e084d4aa73e1fc659e96817f72aae8b11e0e73626eb3b154d1b25"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/Resources/unity default resources",
+      "bytes": 4845928,
+      "sha256": "ca34e9022b55d489c50f0b2d22d3e7b4fba6d1d5e27784ca8c3697dbf65f0c01"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/Resources/unity_builtin_extra",
+      "bytes": 384508,
+      "sha256": "5e932a2196334bf67501b7a8d89a98cb4176b990c750ee96e663cc4545b61a41"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/RuntimeInitializeOnLoads.json",
+      "bytes": 1353,
+      "sha256": "653a6d5b0d6629f5f821cff2d8b2cff8998293cc66c7a18ab52cc9fc220f9255"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/ScriptingAssemblies.json",
+      "bytes": 3021,
+      "sha256": "e85b52067a519ebef139947325675acfce72769d0be7fe85b13845d447ee1186"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/sharedassets0.assets",
+      "bytes": 13142116,
+      "sha256": "6b488b7cb6a7aea1e8b1ef2fdb3f8991bc3ea64e01edc2114b1095c98dcd79ce"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/sharedassets0.assets.resS",
+      "bytes": 267376448,
+      "sha256": "3072837d077d4e8175c48631987b9506ff338c8220adb7d20e776f77923b9b5a"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面_Data/sharedassets0.resource",
+      "bytes": 7315168,
+      "sha256": "967d5a98fdb7687a2d7faf1c6f880655aafd3e41ebfe2d386b8e5ae6d2d55ad9"
+    },
+    {
+      "path": "开始界面工程/古堡逃杀_开始界面.exe",
+      "bytes": 653824,
+      "sha256": "812e4820102aa33ff686f728eed7e1f887dbffd77eac321dbc002b08a8003cf9"
+    },
+    {
+      "path": "开始界面工程/baselib.dll",
+      "bytes": 491008,
+      "sha256": "94f5ef9b2b0bb89e003c2b2f63c34c7c855e053b83dd6af9876a69df56c67334"
+    },
+    {
+      "path": "开始界面工程/GameAssembly.dll",
+      "bytes": 15885312,
+      "sha256": "8ae47409b0983d6256350cfa62320fbbedae500f3c378feb0e064ccae56c37c7"
+    },
+    {
+      "path": "开始界面工程/UnityCrashHandler64.exe",
+      "bytes": 1231960,
+      "sha256": "451b78c41454a3f95e881f4cc836da70ffabea3d430a0104f4eaf511a18b13e6"
+    },
+    {
+      "path": "开始界面工程/UnityPlayer.dll",
+      "bytes": 28350552,
+      "sha256": "4d56db2a528e7b4444a0ef85782613258c03c12e0b0f141637802a1715700b6c"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/app.info",
+      "bytes": 34,
+      "sha256": "7f2b6f50a90e3da0d1e3bceb75775d8c47e043d48c58b4cf024849e07556969d"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/boot.config",
+      "bytes": 120,
+      "sha256": "a5715a6a0d5edfa2668310736fbe86d36700b41b022e6d3dd5db37e6fcbb59d5"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/globalgamemanagers",
+      "bytes": 128932,
+      "sha256": "bc502d89e24708249e33545098370b1d1c74052b36196a1a61d363c1fa5f387d"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/globalgamemanagers.assets",
+      "bytes": 663156,
+      "sha256": "91a7499f2e916feea4cb0740eb63caa9889afc236d310fb758e20c7c97366837"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/globalgamemanagers.assets.resS",
+      "bytes": 2899456,
+      "sha256": "5be6467e4676d13e1464e1c38b7dea15eb3c2d79ad467fce700aecfabb1ae8d8"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/2.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/2.0/machine.config",
+      "bytes": 29116,
+      "sha256": "edc5bcf685d930a607bc097927260a3f9ac7f52dd809db68158298bfd934b7ce"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/2.0/settings.map",
+      "bytes": 2622,
+      "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/2.0/web.config",
+      "bytes": 11686,
+      "sha256": "3c1a76a5849074b437d297656a208a3bef6d84b982153542b9c797046c601dfc"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.0/machine.config",
+      "bytes": 33648,
+      "sha256": "6919d5af506aae0d93e91bd83418a81895a5554b9f54cf94aad20d025a4db664"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.0/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.0/web.config",
+      "bytes": 18848,
+      "sha256": "f1a6416eeedd9d040387fd85dcf7d6e074b6644c6829d08be220ff9fc32efb31"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.5/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.5/machine.config",
+      "bytes": 34106,
+      "sha256": "ef9b9387168fd1dd6c996f96c134d9c44f8eb06f9587004bf997252a520182d6"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.5/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/4.5/web.config",
+      "bytes": 18857,
+      "sha256": "15a2c7a9242bf54d3ccb3e07fa6d8f84ba8b303d8877243787a1103009941bdb"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/browscap.ini",
+      "bytes": 311984,
+      "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/config",
+      "bytes": 3276,
+      "sha256": "60099cf91bb1a5717fc1f2d23cf36a61d3bfb70d9489fbb6f4bae98c560bf3d5"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/etc/mono/mconfig/config.xml",
+      "bytes": 25817,
+      "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "bytes": 3355260,
+      "sha256": "9c4b27f342abb36402e019943db59c91bedb844557ead2c133ae75858f0755a8"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "bytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/level0",
+      "bytes": 6867268,
+      "sha256": "d6001c79b5874760501ccc24e7a233b3b8afd84e1183de27697446596cbeedb9"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/level0.resS",
+      "bytes": 56636608,
+      "sha256": "830bf35bb2bf9d832caf20f5d75f90d7ea3bd76ff39b65fb27c9edf85072e614"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/resources.assets",
+      "bytes": 227480,
+      "sha256": "5ac4f828044f6f837d42353237416ae5d9eef44b8468b4612eed94640a93e128"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/resources.assets.resS",
+      "bytes": 7172,
+      "sha256": "4436b3f0d55e084d4aa73e1fc659e96817f72aae8b11e0e73626eb3b154d1b25"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/Resources/unity default resources",
+      "bytes": 4845928,
+      "sha256": "ca34e9022b55d489c50f0b2d22d3e7b4fba6d1d5e27784ca8c3697dbf65f0c01"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/Resources/unity_builtin_extra",
+      "bytes": 392660,
+      "sha256": "77bbdc8af6216f284f75c82630a085f13f9fa7c43b63d73afe063026dfd8ae3d"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/RuntimeInitializeOnLoads.json",
+      "bytes": 1353,
+      "sha256": "653a6d5b0d6629f5f821cff2d8b2cff8998293cc66c7a18ab52cc9fc220f9255"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/ScriptingAssemblies.json",
+      "bytes": 3021,
+      "sha256": "e85b52067a519ebef139947325675acfce72769d0be7fe85b13845d447ee1186"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/sharedassets0.assets",
+      "bytes": 15063664,
+      "sha256": "d53b2fb1c0a7ec91bb5e354d7059c6cd79af0893ab645e6cee3445f1ff83dc1c"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/sharedassets0.assets.resS",
+      "bytes": 243141476,
+      "sha256": "4e7db8dff37a7099dcfc2390079b1ec4b83aa7b14623000322970bc650cb84df"
+    },
+    {
+      "path": "主工程/古堡逃杀_Data/sharedassets0.resource",
+      "bytes": 7685376,
+      "sha256": "cf6f6e2a79c2e55874d8572be106df789606fd4586237d900843faba137d199f"
+    },
+    {
+      "path": "主工程/古堡逃杀.exe",
+      "bytes": 653824,
+      "sha256": "7baa1001b99cb770a26cab90f5a6e19f444b77c7ed124076ae9e0d776840425b"
+    },
+    {
+      "path": "主工程/baselib.dll",
+      "bytes": 491008,
+      "sha256": "94f5ef9b2b0bb89e003c2b2f63c34c7c855e053b83dd6af9876a69df56c67334"
+    },
+    {
+      "path": "主工程/GameAssembly.dll",
+      "bytes": 15915520,
+      "sha256": "47cccf4317f6b90babd743ad9e6b834c8b19a0713e2fe12198719c14f6160cc1"
+    },
+    {
+      "path": "主工程/UnityCrashHandler64.exe",
+      "bytes": 1231960,
+      "sha256": "451b78c41454a3f95e881f4cc836da70ffabea3d430a0104f4eaf511a18b13e6"
+    },
+    {
+      "path": "主工程/UnityPlayer.dll",
+      "bytes": 28350552,
+      "sha256": "4d56db2a528e7b4444a0ef85782613258c03c12e0b0f141637802a1715700b6c"
+    }
+  ]
+}

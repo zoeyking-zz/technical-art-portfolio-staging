@@ -6,7 +6,7 @@
 
 ## 运行
 
-在 `projects/gen3d-asset-factory` 目录执行下列命令。Windows 中如果 Blender 不在 PATH 内，用 `& '本机的 blender.exe 路径'` 替换命令开头的 `blender`。
+在仓库顶层的 `gen3d-asset-factory` 目录执行下列命令。Windows 中如果 Blender 不在 PATH 内，用 `& '本机的 blender.exe 路径'` 替换命令开头的 `blender`。
 
 ```sh
 blender --background --factory-startup --python-exit-code 1 --python scripts/test_gen3d_blender.py

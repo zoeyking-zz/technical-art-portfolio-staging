@@ -1,6 +1,6 @@
 # Local review and extraction files
 .cloth-extract/
-projects/blender-realtime-mocap/media/demo.mp4
+early-projects/blender-realtime-mocap/media/demo.mp4
 
 # Visual Studio
 .vs/
@@ -26,6 +26,7 @@ x86/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 MemoryCaptures/
+**/*_BackUpThisFolder_ButDontShipItWithYourGame/
 
 # Android / Gradle
 .gradle/
