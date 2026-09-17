@@ -6,6 +6,7 @@
 
 | 项目 | 内容 | 入口 |
 |---|---|---|
+| [Gen3D Inspector](gen3d-inspector/) | 浏览器本地多格式 3D 资产检查器；支持 Graphdeco Gaussian Splat 真渲染与自适应视口 | [在线演示](https://gen3d-inspector.zoeyking0675.chatgpt.site/) · [完整源码](gen3d-inspector/) |
 | [Gen3D Asset Factory](gen3d-asset-factory/) | Blender 静态资产检查、规范命名、GLB 导出与重新导入核对；0.2.0 预览版 | [安装包](gen3d-asset-factory/dist/gen3d_factory-0.2.0.zip) · [测试记录](gen3d-asset-factory/docs/testing.md) |
 
 ## 本科与早期项目
@@ -22,6 +23,7 @@
 ```text
 technical-art-portfolio-staging/
 ├── README.md
+├── gen3d-inspector/           # 近期项目：在线 3D 资产检查器完整源码
 ├── gen3d-asset-factory/       # 近期项目：源码、文档、安装包与演示
 ├── early-projects/           # 本科及早期作品统一归档
 │   ├── README.md
