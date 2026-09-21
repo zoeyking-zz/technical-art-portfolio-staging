@@ -13,7 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gen3d-inspector.zoeyking0675.chatgpt.site'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      'https://gen3d-inspector.zoeyking0675.chatgpt.site',
+  ),
   title: 'Gen3D Inspector',
   description: 'A local-first multi-format 3D asset viewer and QA workbench.',
   openGraph: {
@@ -45,4 +48,3 @@ export default function RootLayout({
     </html>
   );
 }
-
