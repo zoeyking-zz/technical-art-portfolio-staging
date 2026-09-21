@@ -152,7 +152,28 @@
 
 ---
 
-## 9. 参考来源
+## 9. 照着点就行：控制台直达链接
+
+按顺序走，前两步今天就能完成。
+
+| 步骤 | 做什么 | 直达链接 |
+| --- | --- | --- |
+| 0 | 确认腾讯云账号已完成**实名认证** | https://console.cloud.tencent.com/developer |
+| 1 | **注册域名**（建议选 `.top` / `.xyz`，最便宜；实名认证几分钟通过） | https://console.cloud.tencent.com/domain |
+| 2 | **买最低配轻量应用服务器**（选**中国大陆**地域，包年包月 ≥3 个月） | https://buy.cloud.tencent.com/lighthouse |
+| 3 | **提交备案**（首次备案，小程序扫码或网页版） | https://console.cloud.tencent.com/beian |
+| 4 | 备案通过后：创建**大陆 COS 桶**并绑域名 | https://console.cloud.tencent.com/cos |
+| 5 | 申请**免费 DV 证书**并绑定 | https://console.cloud.tencent.com/ssl |
+| 6 | （可选）开 **CDN 加速**，域名需已备案 | https://console.cloud.tencent.com/cdn |
+| 7 | 配 **DNS 解析**（CNAME 指向 COS/CDN 给的地址） | https://console.dnspod.cn/dns |
+| 8 | 查备案号是否已下发 | https://beian.miit.gov.cn/ |
+
+> 第 1、2 步完成当天就能提交第 3 步。备案审核期间，我可以先用**香港节点**把站点架起来对外访问，
+> 备案一下号再切到大陆节点 —— 用的是同一份 `dist-static/` 产物，代码一行都不用改。
+
+---
+
+## 10. 参考来源
 
 - 腾讯云《备案云资源》：https://cloud.tencent.com/document/product/243/18908
 - 腾讯云《备案审核》（含各省管局时长表）：https://cloud.tencent.com/document/product/243/19650
