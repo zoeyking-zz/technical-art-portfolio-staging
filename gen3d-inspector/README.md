@@ -12,6 +12,8 @@
 - 识别 Graphdeco 3DGS PLY，并用 Spark/Three.js 读取位置、尺度、旋转、不透明度和球谐颜色进行真正的 Gaussian Splat 渲染。
 - 用可见 splat 的稳健分位数自动取景，避免极端离群点把主体压成黑点。
 - 地面网格、相机近远裁剪面与雾密度随资产尺度动态调整。
+- 提供中性棚拍、暖色夕阳、冷色天光与霓虹梦幻四套灯光环境，便于对比材质响应。
+- 导入后默认自动环绕展示，可随时暂停并手动检查；尊重系统“减少动态效果”设置。
 - 可导出 JSON 检查报告。
 
 ## Stack
@@ -70,6 +72,18 @@ Local files
 ```
 
 All selected asset bytes stay in browser memory; there is no model upload endpoint.
+
+## Materials by format
+
+The viewer preserves material data that is actually encoded in the selected files and supported by the browser loader. It does not reproduce a DCC application's full shader graph.
+
+- **GLB / glTF:** the best interchange path for PBR materials, UVs and textures. A GLB is self-contained; external `.bin` and texture files referenced by `.gltf` must be selected together. Optional compressed-texture or geometry extensions need matching browser decoders.
+- **FBX:** common mesh materials and resolvable textures are imported, but procedural DCC shaders, constraints and renderer-specific nodes may be simplified.
+- **OBJ:** the `.obj`, `.mtl` and referenced textures must be selected together. OBJ has no standardized modern PBR material model.
+- **PLY:** ordinary PLY can carry vertex colors but usually has no mesh material. Graphdeco 3DGS PLY stores splat color, opacity, scale and rotation rather than a conventional surface material.
+- **STL:** geometry only; the viewer supplies a neutral inspection material.
+
+Lighting presets relight conventional mesh materials. Gaussian splats contain precomputed radiance, so the presets change the surrounding presentation and exposure but do not physically relight the captured scene.
 
 ## Scope and limitations
 

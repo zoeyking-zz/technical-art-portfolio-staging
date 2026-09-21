@@ -94,6 +94,11 @@ button:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary), tra
 .status-error { color: var(--destructive); }
 .viewport-hint { position: absolute; z-index: 3; bottom: 16px; left: 16px; display: flex; align-items: center; gap: 6px; font-family: var(--font-geist-mono), monospace; font-size: 8px; letter-spacing: .06em; color: rgb(177 190 199 / 38%); pointer-events: none; }
 .viewport-toolbar { position: absolute; z-index: 4; bottom: 14px; left: 50%; display: flex; align-items: center; gap: 2px; padding: 4px; border: 1px solid rgb(255 255 255 / 10%); border-radius: 8px; background: rgb(8 11 14 / 78%); box-shadow: 0 15px 40px rgb(0 0 0 / 34%); backdrop-filter: blur(14px); transform: translateX(-50%); }
+.lighting-control { display: flex; height: 28px; align-items: center; gap: 5px; border-radius: 5px; padding: 0 5px 0 7px; color: #84909a; background: rgb(255 255 255 / 3%); }
+.lighting-control:focus-within { outline: 2px solid color-mix(in srgb, var(--primary), transparent 35%); outline-offset: 1px; }
+.lighting-control svg { width: 12px; height: 12px; flex: 0 0 auto; color: var(--primary); }
+.lighting-select { width: 98px; height: 100%; border: 0; outline: 0; color: #d6dce0; background: transparent; font-family: var(--font-geist-mono), monospace; font-size: 8px; letter-spacing: .01em; cursor: pointer; }
+.lighting-select option { color: #dce1e4; background: #10161b; }
 .loading-overlay, .error-overlay { position: absolute; z-index: 10; top: 50%; left: 50%; display: flex; width: min(340px, calc(100% - 36px)); align-items: center; flex-direction: column; justify-content: center; border: 1px solid rgb(255 255 255 / 10%); border-radius: 10px; padding: 26px 22px; background: rgb(10 14 17 / 90%); box-shadow: 0 20px 60px rgb(0 0 0 / 45%); text-align: center; backdrop-filter: blur(18px); transform: translate(-50%, -50%); }
 .loading-overlay p, .error-overlay p { margin-top: 10px; font-size: 13px; font-weight: 600; }
 .loading-overlay span, .error-overlay span { max-width: 280px; margin: 5px 0 14px; font-size: 10px; line-height: 1.5; color: #717d86; }
@@ -154,6 +159,7 @@ button:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary), tra
   .viewport-hint { display: none; }
   .viewport-topbar { right: 10px; left: 10px; }
   .viewport-topbar > div { max-width: 76%; }
+  .lighting-select { width: 82px; }
   .status-bar { position: sticky; bottom: 0; }
 }
 

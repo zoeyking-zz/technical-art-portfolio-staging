@@ -31,7 +31,10 @@ import {
   LoaderCircle,
   Maximize2,
   Orbit,
+  Palette,
+  Pause,
   Play,
+  RefreshCw,
   RotateCcw,
   ScanSearch,
   ShieldCheck,
@@ -45,6 +48,7 @@ import { Badge } from '@/components/ui/badge';
 
 type Phase = 'demo' | 'loading' | 'ready' | 'error';
 type IssueLevel = 'pass' | 'warning' | 'error' | 'info';
+type LightPresetId = 'neutral' | 'warm' | 'cool' | 'dream';
 
 type AssetStats = {
   name: string;
@@ -83,6 +87,11 @@ type Runtime = {
   splatRenderer: SparkRenderer;
   grid: THREE.GridHelper;
   axes: THREE.AxesHelper;
+  lights: {
+    hemisphere: THREE.HemisphereLight;
+    key: THREE.DirectionalLight;
+    rim: THREE.DirectionalLight;
+  };
   bounds: THREE.Box3 | null;
   loadObject: (root: THREE.Object3D, animations: THREE.AnimationClip[], metadata: FileMetadata) => void;
   resetCamera: () => void;
@@ -105,6 +114,58 @@ type PlyHeaderInfo = {
 };
 
 const BASE_GRID_SIZE = 20;
+
+const LIGHT_PRESETS: Array<{
+  id: LightPresetId;
+  label: string;
+  background: number;
+  fog: number;
+  exposure: number;
+  hemisphere: [number, number, number];
+  key: [number, number, THREE.Vector3Tuple];
+  rim: [number, number, THREE.Vector3Tuple];
+}> = [
+  {
+    id: 'neutral',
+    label: 'Neutral studio',
+    background: 0x090d10,
+    fog: 0x090d10,
+    exposure: 1.15,
+    hemisphere: [0xddeeff, 0x14181c, 2.25],
+    key: [0xfff2d6, 4.8, [5, 7, 5]],
+    rim: [0x87bfff, 2.1, [-5, 3, -4]],
+  },
+  {
+    id: 'warm',
+    label: 'Warm sunset',
+    background: 0x130d0a,
+    fog: 0x130d0a,
+    exposure: 1.08,
+    hemisphere: [0xffd5a3, 0x24120d, 2.35],
+    key: [0xff8a42, 5.2, [5, 5, 4]],
+    rim: [0xffd49a, 2.4, [-4, 4, -3]],
+  },
+  {
+    id: 'cool',
+    label: 'Cool skylight',
+    background: 0x07101a,
+    fog: 0x07101a,
+    exposure: 1.18,
+    hemisphere: [0xb7ddff, 0x091427, 2.5],
+    key: [0x8fc7ff, 5.1, [4, 7, 5]],
+    rim: [0x5cf3ff, 2.6, [-5, 2, -4]],
+  },
+  {
+    id: 'dream',
+    label: 'Neon dream',
+    background: 0x10091a,
+    fog: 0x10091a,
+    exposure: 1.05,
+    hemisphere: [0xbba8ff, 0x190922, 2.15],
+    key: [0xff4fd8, 5.4, [5, 5, 3]],
+    rim: [0x45eaff, 3.4, [-5, 3, -4]],
+  },
+];
 
 const DEMO_STATS: AssetStats = {
   name: 'Diagnostic Knot',
@@ -196,6 +257,27 @@ function getRobustSplatBounds(splats: SplatMesh, splatCount: number) {
   const max = new THREE.Vector3(quantile(axes[0], 0.99), quantile(axes[1], 0.99), quantile(axes[2], 0.99));
   const padding = max.clone().sub(min).multiplyScalar(0.06);
   return new THREE.Box3(min.sub(padding), max.add(padding));
+}
+
+function applyLightingPreset(runtime: Runtime, presetId: LightPresetId) {
+  const preset = LIGHT_PRESETS.find((item) => item.id === presetId) ?? LIGHT_PRESETS[0];
+  const [skyColor, groundColor, hemisphereIntensity] = preset.hemisphere;
+  const [keyColor, keyIntensity, keyPosition] = preset.key;
+  const [rimColor, rimIntensity, rimPosition] = preset.rim;
+
+  runtime.lights.hemisphere.color.setHex(skyColor);
+  runtime.lights.hemisphere.groundColor.setHex(groundColor);
+  runtime.lights.hemisphere.intensity = hemisphereIntensity;
+  runtime.lights.key.color.setHex(keyColor);
+  runtime.lights.key.intensity = keyIntensity;
+  runtime.lights.key.position.fromArray(keyPosition);
+  runtime.lights.rim.color.setHex(rimColor);
+  runtime.lights.rim.intensity = rimIntensity;
+  runtime.lights.rim.position.fromArray(rimPosition);
+  runtime.renderer.toneMappingExposure = preset.exposure;
+
+  if (runtime.scene.background instanceof THREE.Color) runtime.scene.background.setHex(preset.background);
+  if (runtime.scene.fog instanceof THREE.FogExp2) runtime.scene.fog.color.setHex(preset.fog);
 }
 
 function fitRuntimeToBounds(runtime: Runtime, bounds: THREE.Box3) {
@@ -380,6 +462,8 @@ export function AssetWorkbench() {
   const [wireframe, setWireframe] = useState(false);
   const [gridVisible, setGridVisible] = useState(true);
   const [axesVisible, setAxesVisible] = useState(false);
+  const [lightingPreset, setLightingPreset] = useState<LightPresetId>('neutral');
+  const [autoRotate, setAutoRotate] = useState(true);
   const [message, setMessage] = useState('Demo asset ready · files stay in this browser');
   const [activeTab, setActiveTab] = useState<'inspect' | 'scene' | 'checks'>('inspect');
 
@@ -394,6 +478,9 @@ export function AssetWorkbench() {
     root.name ||= metadata.name;
     runtime.root = root;
     runtime.scene.add(root);
+    const shouldAutoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    runtime.controls.autoRotate = shouldAutoRotate;
+    setAutoRotate(shouldAutoRotate);
     const box = metadata.bounds?.clone() ?? new THREE.Box3().setFromObject(root);
     fitRuntimeToBounds(runtime, box);
     if (animations.length) {
@@ -425,9 +512,13 @@ export function AssetWorkbench() {
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
     controls.dampingFactor = 0.065;
+    controls.autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    controls.autoRotateSpeed = 0.72;
     controls.target.set(0, 0.4, 0);
     controls.update();
-    scene.add(new THREE.HemisphereLight(0xddeeff, 0x14181c, 2.25));
+    setAutoRotate(controls.autoRotate);
+    const hemisphere = new THREE.HemisphereLight(0xddeeff, 0x14181c, 2.25);
+    scene.add(hemisphere);
     const key = new THREE.DirectionalLight(0xfff2d6, 4.8);
     key.position.set(5, 7, 5);
     scene.add(key);
@@ -456,7 +547,22 @@ export function AssetWorkbench() {
       const runtime = runtimeRef.current;
       if (runtime?.bounds) fitRuntimeToBounds(runtime, runtime.bounds);
     };
-    runtimeRef.current = { scene, camera, controls, renderer, root: demoRoot, mixer: null, splatRenderer, grid, axes, bounds: null, loadObject: loadIntoViewer, resetCamera };
+    runtimeRef.current = {
+      scene,
+      camera,
+      controls,
+      renderer,
+      root: demoRoot,
+      mixer: null,
+      splatRenderer,
+      grid,
+      axes,
+      lights: { hemisphere, key, rim },
+      bounds: null,
+      loadObject: loadIntoViewer,
+      resetCamera,
+    };
+    applyLightingPreset(runtimeRef.current, 'neutral');
     fitRuntimeToBounds(runtimeRef.current, new THREE.Box3().setFromObject(demoRoot));
     const clock = new THREE.Clock();
     let frame = 0;
@@ -469,7 +575,6 @@ export function AssetWorkbench() {
     };
     const render = () => {
       resize();
-      if (runtimeRef.current?.root === demoRoot) demoRoot.rotation.y += 0.0015;
       runtimeRef.current?.mixer?.update(clock.getDelta());
       controls.update();
       renderer.render(scene, camera);
@@ -628,6 +733,21 @@ export function AssetWorkbench() {
     setAxesVisible(next);
   };
 
+  const toggleAutoRotate = () => {
+    const next = !autoRotate;
+    if (runtimeRef.current) runtimeRef.current.controls.autoRotate = next;
+    setAutoRotate(next);
+    setMessage(next ? 'Auto orbit enabled' : 'Auto orbit paused');
+  };
+
+  const changeLightingPreset = (event: ChangeEvent<HTMLSelectElement>) => {
+    const next = event.target.value as LightPresetId;
+    if (runtimeRef.current) applyLightingPreset(runtimeRef.current, next);
+    setLightingPreset(next);
+    const label = LIGHT_PRESETS.find((preset) => preset.id === next)?.label ?? 'Neutral studio';
+    setMessage(`${label} lighting active`);
+  };
+
   const exportReport = () => {
     const status = issues.some((issue) => issue.level === 'error') ? 'ERROR' : issues.some((issue) => issue.level === 'warning') ? 'WARNING' : 'PASS';
     const report = { schema: 'gen3d-inspector-report@1', generatedAt: new Date().toISOString(), status, asset: stats, issues, note: 'Browser-side inspection; visual approval and source DCC validation are still required.' };
@@ -696,8 +816,17 @@ export function AssetWorkbench() {
             <div className="flex min-w-0 items-center gap-2"><Badge className="max-w-[250px] truncate bg-black/60 font-mono text-[9px] text-zinc-200 backdrop-blur">{stats.name}</Badge><Badge variant="outline" className="border-white/10 bg-black/35 font-mono text-[9px] text-zinc-400">{stats.format}</Badge></div>
             <Badge variant="outline" className={`status-badge status-${severity}`}>{severity.toUpperCase()}</Badge>
           </div>
-          <div className="viewport-hint"><Orbit className="size-3" />DRAG TO ORBIT · SCROLL TO ZOOM · RIGHT-DRAG TO PAN</div>
+          <div className="viewport-hint"><Orbit className="size-3" />{autoRotate ? 'AUTO ORBIT ON · DRAG TO INSPECT · SCROLL TO ZOOM' : 'DRAG TO ORBIT · SCROLL TO ZOOM · RIGHT-DRAG TO PAN'}</div>
           <div className="viewport-toolbar" role="toolbar" aria-label="Viewport controls">
+            <label className="lighting-control" title="Lighting environment">
+              <Palette aria-hidden="true" />
+              <span className="sr-only">Lighting environment</span>
+              <select className="lighting-select" value={lightingPreset} onChange={changeLightingPreset} aria-label="Lighting environment">
+                {LIGHT_PRESETS.map((preset) => <option key={preset.id} value={preset.id}>{preset.label}</option>)}
+              </select>
+            </label>
+            <span className="mx-0.5 h-4 w-px bg-white/10" />
+            <Button size="icon-sm" variant={autoRotate ? 'secondary' : 'ghost'} onClick={toggleAutoRotate} aria-label={autoRotate ? 'Pause auto orbit' : 'Start auto orbit'} title={autoRotate ? 'Pause auto orbit' : 'Start auto orbit'}>{autoRotate ? <Pause /> : <RefreshCw />}</Button>
             <Button size="icon-sm" variant={wireframe ? 'secondary' : 'ghost'} onClick={toggleWireframe} aria-label="Toggle wireframe" title="Wireframe"><Triangle /></Button>
             <Button size="icon-sm" variant={gridVisible ? 'secondary' : 'ghost'} onClick={toggleGrid} aria-label="Toggle grid" title="Grid"><Grid3X3 /></Button>
             <Button size="icon-sm" variant={axesVisible ? 'secondary' : 'ghost'} onClick={toggleAxes} aria-label="Toggle axes" title="Axes"><Axis3D /></Button>
