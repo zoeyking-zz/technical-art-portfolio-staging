@@ -19,6 +19,7 @@ const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
+const isStaticExport = process.env.GEN3D_STATIC_EXPORT === '1';
 
 const localBindingConfig = {
   main: 'vinext/server/fetch-handler',
@@ -49,14 +50,25 @@ export default defineConfig(async () => {
   process.env.WRANGLER_LOG_PATH ??= '.wrangler/logs';
   process.env.MINIFLARE_REGISTRY_PATH ??= '.wrangler/registry';
 
-  // Wrangler snapshots its log path while the Cloudflare plugin is imported.
-  const { cloudflare } = await import('@cloudflare/vite-plugin');
-
-  return {
+  const sharedConfig = {
     css: { postcss: { plugins: [tailwindcss()] } },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
+  };
+
+  // A portable bundle has no Workers runtime and must not invoke the Sites
+  // plugin, which copies the private `.openai/hosting.json` file. This keeps
+  // GitHub Pages and object-storage builds independent from Sites.
+  if (isStaticExport) {
+    return { ...sharedConfig, plugins: [vinext()] };
+  }
+
+  // Wrangler snapshots its log path while the Cloudflare plugin is imported.
+  const { cloudflare } = await import('@cloudflare/vite-plugin');
+
+  return {
+    ...sharedConfig,
     plugins: [
       vinext(),
       sites(),
