@@ -40,6 +40,24 @@ Production build:
 npm run build
 ```
 
+## Share it as a usable product
+
+The viewer has a browser-first distribution path: it can be exported as plain static files, then hosted without a server. This keeps selected models on the visitor's device and works especially well for a portfolio link.
+
+```bash
+# Static bundle for a custom domain or object storage
+npm run build:static
+npm run verify:static
+
+# Static bundle whose URLs work from this project's GitHub Pages path
+npm run build:github-pages
+npm run verify:github-pages
+```
+
+The GitHub Pages workflow lives at the root of the portfolio repository because GitHub only discovers workflows from a repository's root `.github/workflows` directory. After the repository owner enables **Settings → Pages → Source → GitHub Actions**, every push affecting `gen3d-inspector/` publishes an interactive browser version at `https://zoeyking-zz.github.io/technical-art-portfolio-staging/`.
+
+For a Windows `.exe`, use the same `dist-static/` bundle in a small Electron or Tauri shell. The browser version is the recommended first distribution because it requires no installation, updates automatically, and preserves the current local-only file workflow.
+
 ## 3DGS behavior
 
 Graphdeco PLY files are detected from the presence of `f_dc_*`, `opacity`, `scale_*` and `rot_*` vertex properties. They are rendered as anisotropic Gaussian splats rather than fixed-size points. Camera framing uses the central 98% of visible splat centers when spatial outliers are present, while the inspection report retains full source bounds.

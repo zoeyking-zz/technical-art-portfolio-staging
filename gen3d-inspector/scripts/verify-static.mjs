@@ -21,6 +21,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dir = path.join(root, 'dist-static');
+const basePathArg = process.argv
+  .slice(2)
+  .find((arg) => arg.startsWith('--base-path='))
+  ?.slice('--base-path='.length);
+const basePath = basePathArg ? `/${basePathArg.replace(/^\/+|\/+$/g, '')}` : '';
 
 if (!fs.existsSync(path.join(dir, 'index.html'))) {
   console.error('\n  verify-static: dist-static/index.html not found — run `npm run build:static` first.\n');
@@ -39,7 +44,10 @@ const CONTENT_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  const incomingPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  const urlPath = basePath && (incomingPath === basePath || incomingPath.startsWith(`${basePath}/`))
+    ? (incomingPath.slice(basePath.length) || '/')
+    : incomingPath;
   const candidates = [
     path.join(dir, urlPath),
     path.join(dir, urlPath, 'index.html'),
@@ -91,7 +99,7 @@ try {
   check('shell has the app title', index.body.includes('<title>Gen3D Inspector</title>'));
   check('shell is cache-revalidating', index.headers['cache-control'] === 'no-cache', index.headers['cache-control']);
 
-  const refs = [...new Set([...index.body.matchAll(/(?:src|href)="(\/_next\/[^"]+)"/g)].map((m) => m[1]))];
+  const refs = [...new Set([...index.body.matchAll(/(?:src|href)="([^"]*\/_next\/[^"]+)"/g)].map((m) => m[1]))];
   let assetFailures = 0;
   for (const ref of refs) {
     const res = await get(port, ref);
@@ -102,9 +110,9 @@ try {
   }
   check(`all ${refs.length} hashed assets referenced by the shell`, assetFailures === 0);
 
-  check('GET /og.png', (await get(port, '/og.png')).status === 200);
-  check('GET /favicon.svg', (await get(port, '/favicon.svg')).status === 200);
-  check('GET /404.html', (await get(port, '/404.html')).status === 200);
+  check('GET /og.png', (await get(port, `${basePath}/og.png`)).status === 200);
+  check('GET /favicon.svg', (await get(port, `${basePath}/favicon.svg`)).status === 200);
+  check('GET /404.html', (await get(port, `${basePath}/404.html`)).status === 200);
 
   const ogImage = index.body.match(/og:image" content="([^"]*)"/)?.[1] ?? '';
   if (ogImage.includes('chatgpt.site')) {
@@ -119,3 +127,4 @@ try {
 const failed = results.filter((result) => !result.ok).length;
 console.log(`\n  ${results.length - failed}/${results.length} checks passed\n`);
 process.exit(failed > 0 ? 1 : 0);
+

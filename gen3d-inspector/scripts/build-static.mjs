@@ -58,6 +58,14 @@ const siteUrl = (
   .trim()
   .replace(/\/+$/, '');
 
+const basePathArg = process.argv
+  .slice(2)
+  .find((arg) => arg.startsWith('--base-path='))
+  ?.slice('--base-path='.length);
+const basePath = basePathArg
+  ? `/${basePathArg.replace(/^\/+|\/+$/g, '')}`
+  : '';
+
 // Files under dist/client that only make sense to a Workers/Pages-style host.
 const EXCLUDED = new Set([
   '.assetsignore',
@@ -79,6 +87,7 @@ console.log(
     ? `  site url: ${siteUrl}\n`
     : '  site url: (unset — og:image keeps the default domain; pass --site-url=https://…)\n',
 );
+if (basePath) console.log(`  base path: ${basePath}\n`);
 
 const childEnv = {
   ...process.env,
@@ -120,14 +129,24 @@ fs.cpSync(clientDir, outDir, {
   },
 });
 
+// GitHub Pages project sites live below /<repository>/, while this viewer is
+// deliberately built for a domain root (which is also what COS uses). Vinext
+// cannot currently static-export a root route with Next's basePath enabled,
+// so the Pages build keeps the portable root output and prefixes only its
+// public asset URLs after export. This app has no server routes or API calls.
+if (basePath) rewritePublicUrls(outDir, basePath);
+
 // Sanity checks on the packaged output: the shell HTML and the JS/CSS payload
 // the browser needs to boot the viewer.
 const html = fs.readFileSync(indexPath, 'utf-8');
-const referenced = [...html.matchAll(/(?:src|href)="(\/_next\/[^"]+)"/g)].map(
+const referenced = [...html.matchAll(/(?:src|href)="([^"]*\/_next\/[^"]+)"/g)].map(
   (m) => m[1],
 );
 const missing = referenced.filter(
-  (url) => !fs.existsSync(path.join(outDir, decodeURIComponent(url.slice(1)))),
+  (url) => {
+    const bundlePath = basePath && url.startsWith(`${basePath}/`) ? url.slice(basePath.length) : url;
+    return !fs.existsSync(path.join(outDir, decodeURIComponent(bundlePath.slice(1))));
+  },
 );
 if (missing.length > 0) {
   fail(`index.html references ${missing.length} asset(s) that are not present: ${missing.join(', ')}`);
@@ -147,3 +166,17 @@ console.log(`  ${files.length} files, ${(bytes / 1024 / 1024).toFixed(2)} MB`);
 console.log(`  output: ${outDir}`);
 console.log(`  assets referenced by index.html: ${referenced.length}, all present\n`);
 console.log('  Next: node scripts/deploy-cos.mjs   (needs COS_* environment variables)\n');
+
+function rewritePublicUrls(dir, prefix) {
+  const textExtensions = new Set(['.html', '.css', '.js', '.rsc', '.json']);
+  for (const file of walk(dir)) {
+    if (!textExtensions.has(path.extname(file).toLowerCase())) continue;
+    const source = fs.readFileSync(file, 'utf8');
+    const rewritten = source
+      .replace(/(["'])\/_next\//g, `$1${prefix}/_next/`)
+      .replace(/url\(\/_next\//g, `url(${prefix}/_next/`)
+      .replace(/(["'])\/(favicon\.svg|og\.png|404\.html)(?=["'])/g, `$1${prefix}/$2`);
+    if (rewritten !== source) fs.writeFileSync(file, rewritten);
+  }
+}
+

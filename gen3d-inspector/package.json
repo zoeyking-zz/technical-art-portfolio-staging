@@ -10,7 +10,9 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "build:static": "node scripts/build-static.mjs",
+    "build:github-pages": "node scripts/build-static.mjs --base-path=/technical-art-portfolio-staging",
     "verify:static": "node scripts/verify-static.mjs",
+    "verify:github-pages": "node scripts/verify-static.mjs --base-path=/technical-art-portfolio-staging",
     "deploy:cos": "node scripts/build-static.mjs && node scripts/deploy-cos.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
@@ -53,3 +55,4 @@
   },
   "type": "module"
 }
+
