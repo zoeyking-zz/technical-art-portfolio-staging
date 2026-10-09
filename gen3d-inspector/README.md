@@ -2,7 +2,7 @@
 
 一个面向技术美术作品审查的、本地优先的多格式 3D 资产浏览与自动检查工具。
 
-**Live demo:** [https://gen3d-inspector.zoeyking0675.chatgpt.site/](https://zoeyking-zz.github.io/technical-art-portfolio-staging/)
+**Live demo:** [https://zoeyking-zz.github.io/technical-art-portfolio-staging/](https://zoeyking-zz.github.io/technical-art-portfolio-staging/)
 
 ## Highlights
 
