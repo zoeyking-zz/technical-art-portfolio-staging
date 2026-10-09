@@ -1,12 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
 import { defineConfig } from 'vite';
-import hostingConfig from './.openai/hosting.json';
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
 
+// `.openai/hosting.json` is intentionally not committed: it identifies the
+// private Sites project and is irrelevant to static hosts. Sites builds have
+// the file, while GitHub Pages builds safely use these empty bindings.
+const hostingConfigPath = path.resolve('.openai/hosting.json');
+const hostingConfig = fs.existsSync(hostingConfigPath)
+  ? JSON.parse(fs.readFileSync(hostingConfigPath, 'utf8')) as { d1?: string | null; r2?: string | null }
+  : { d1: null, r2: null };
 const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
